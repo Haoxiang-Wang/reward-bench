@@ -141,7 +141,7 @@ REWARD_MODEL_CONFIG = {
         "model_type": "Custom Classifier",
         "torch_dtype": torch.bfloat16,
     },
-    "pair-preference-model-LLaMA3-8B": {
+    "slic-preference-model": {
         "model_builder": AutoModelForCausalLM.from_pretrained,
         "pipeline_builder": SlicPairPMPipeline,
         "quantized": False,
