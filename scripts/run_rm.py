@@ -54,6 +54,7 @@ def get_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=str, required=True, help="path to model")
+    parser.add_argument("--config", type=str, default=None, help="config for reward model")
     parser.add_argument("--tokenizer", type=str, default=None, help="path to non-matching tokenizer to model")
     parser.add_argument("--chat_template", type=str, default="tulu", help="path to chat template")
     parser.add_argument(
@@ -103,8 +104,9 @@ def main():
     chat_template = args.chat_template
     conv = get_conv_template(chat_template)
 
-    if args.model in REWARD_MODEL_CONFIG:
-        config = REWARD_MODEL_CONFIG[args.model]
+    config_name  = args.config if args.config is not None else args.model
+    if config_name in REWARD_MODEL_CONFIG:
+        config = REWARD_MODEL_CONFIG[config_name]
     else:
         config = REWARD_MODEL_CONFIG["default"]
     logger.info(f"Using reward model config: {config}")
